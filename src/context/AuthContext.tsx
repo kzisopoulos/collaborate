@@ -2,13 +2,13 @@ import { createContext, useEffect, useReducer } from "react";
 import { projectAuth } from "../firebase/config";
 
 interface IProps {
-  children: JSX.Element;
+  children: React.ReactNode;
 }
 
 interface AuthState {
   user: any;
   authIsReady: boolean;
-  dispatch?: ({}: AuthActions) => void;
+  dispatch?: React.Dispatch<AuthActions>;
 }
 
 interface AuthActions {
@@ -21,7 +21,7 @@ const initialState: AuthState = {
   authIsReady: false,
 };
 
-export const AuthContext = createContext(initialState);
+export const AuthContext = createContext<AuthState>(initialState);
 
 export const authReducer = (state: AuthState, action: AuthActions) => {
   switch (action.type) {
@@ -41,7 +41,11 @@ export const AuthContextProvider = ({ children }: IProps) => {
 
   useEffect(() => {
     const unsub = projectAuth.onAuthStateChanged((user) => {
-      dispatch({ type: "AUTH_IS_READY", payload: user });
+      if (user) {
+        dispatch({ type: "AUTH_IS_READY", payload: user });
+      } else {
+        dispatch({ type: "LOGOUT", payload: null });
+      }
       unsub();
     });
   }, []);

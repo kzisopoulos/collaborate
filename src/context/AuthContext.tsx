@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { createContext, useEffect, useReducer } from "react";
 import { projectAuth } from "../firebase/config";
 
@@ -6,12 +7,12 @@ interface IProps {
 }
 
 interface AuthState {
-  user: any;
+  user: User | null;
   authIsReady: boolean;
-  dispatch?: React.Dispatch<AuthActions>;
+  dispatch?: React.Dispatch<AuthActions> | any;
 }
 
-interface AuthActions {
+export interface AuthActions {
   type: "LOGIN" | "LOGOUT" | "AUTH_IS_READY";
   payload: any;
 }

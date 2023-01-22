@@ -4,10 +4,10 @@ import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
 
 export const useCollection = (
   theCollection: string,
-  _query: any,
-  _orderBy: any
+  _query: any = "",
+  _orderBy: any = ""
 ) => {
-  const [documents, setDocuments] = useState(null);
+  const [documents, setDocuments] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   // const query = useRef(_query).current;
   // const orderBy = useRef(_orderBy).current;
@@ -19,12 +19,12 @@ export const useCollection = (
     // if (orderBy) {
     //   ref = ref.orderBy(...orderBy);
     // }
-    if (theCollection === "projects") {
-      ref = query(ref, orderBy("createdAt", "desc"));
-    }
-    if (theCollection === "users") {
-      ref = query(ref, orderBy("online", "desc"));
-    }
+    // if (theCollection === "projects") {
+    //   ref = query(ref, orderBy("createdAt", "desc"));
+    // }
+    // if (theCollection === "users") {
+    //   ref = query(ref, orderBy("online", "desc"));
+    // }
 
     const unsub = onSnapshot(
       ref,

@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
 import { projectAuth, projectFirestore } from "../firebase/config";
 import { useAuthContext } from "../hooks/useAuthContext";
-import {
-  AuthError,
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { FirebaseError } from "firebase/app";
 const useSignup = () => {
   const [isCanceled, setIsCanceled] = useState(false);
-  const [error, setError] = useState<AuthError | null>(null);
+  const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
 

@@ -19,7 +19,7 @@ export interface AuthActions {
 
 const initialState: AuthState = {
   user: null,
-  authIsReady: false,
+  authIsReady: true,
 };
 
 export const AuthContext = createContext<AuthState>(initialState);

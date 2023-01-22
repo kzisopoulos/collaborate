@@ -13,7 +13,6 @@ const firebaseConfig = {
 };
 
 // step 1: initialize firebase
-// firebase.initializeApp(firebaseConfig);
 initializeApp(firebaseConfig);
 
 // step 2: initialize individual services
@@ -21,6 +20,6 @@ const projectFirestore = getFirestore();
 const projectAuth = getAuth();
 const projectStorage = getStorage();
 
-// step 3: create a firebase timestamp object
+// // step 3: create a firebase timestamp object
 
 export { projectFirestore, projectAuth, projectStorage };

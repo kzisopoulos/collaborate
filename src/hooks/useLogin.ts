@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { projectAuth, projectFirestore } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-import { AuthError, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
-import userEvent from "@testing-library/user-event";
 
 export const useLogin = () => {
   const [isCanceled, setIsCanceled] = useState(false);
-  const [error, setError] = useState<AuthError | null>(null);
+  const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
   const { dispatch } = useAuthContext();
 

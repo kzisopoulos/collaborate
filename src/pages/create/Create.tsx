@@ -19,7 +19,7 @@ const categories = [
 const Create = () => {
   const { documents } = useCollection("users");
   const { addDocument, response } = useFirestore("projects");
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<any>();
   const { user } = useAuthContext();
   const [name, setName] = useState("");
   const [details, setDetails] = useState("");
@@ -109,14 +109,14 @@ const Create = () => {
           <span>Project category:</span>
           <Select
             options={categories}
-            onChange={(option: any) => setCategory(option)}
+            onChange={(option) => setCategory(option)}
           />
         </label>
         <label>
           <span>Assign to:</span>
           <Select
             options={users}
-            onChange={(option: any) => setAssignedUsers(option)}
+            onChange={(option) => setAssignedUsers(option)}
             isMulti
           />
         </label>

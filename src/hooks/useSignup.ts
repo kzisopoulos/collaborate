@@ -34,14 +34,10 @@ const useSignup = () => {
 
       // upload user thumbnail
       const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
-      // console.log(uploadPath);
       const storage = getStorage();
-      // console.log(storage);
       const imgRef = ref(storage, uploadPath);
-      // console.log(imgRef);
       await uploadBytes(imgRef, thumbnail);
 
-      // const imgURL = await img.ref.getDownloadURL();
       const imgURL = await getDownloadURL(imgRef);
 
       await updateProfile(res.user, {

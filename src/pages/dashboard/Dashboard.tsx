@@ -1,13 +1,12 @@
 import "./Dashboard.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCollection } from "../../hooks/useCollection";
 import ProjectList from "../../components/ProjectList";
 import ProjectFilter from "./ProjectFilter";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { CollectionReference, DocumentData } from "firebase/firestore";
+import { DocumentData } from "firebase/firestore";
 import { UserInfo } from "firebase/auth";
 const Dashboard = () => {
-  const theQuery = null;
   const { documents, error } = useCollection("projects");
   const [currentFilter, setCurrentFilter] = useState("all");
   const [filteredDocs, setFilteredDocs] = useState(null);

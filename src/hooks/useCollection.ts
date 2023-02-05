@@ -1,30 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { projectFirestore } from "../firebase/config";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 
-export const useCollection = (
-  theCollection: string,
-  _query: any = "",
-  _orderBy: any = ""
-) => {
+export const useCollection = (theCollection: string) => {
   const [documents, setDocuments] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
-  // const query = useRef(_query).current;
-  // const orderBy = useRef(_orderBy).current;
+
   useEffect(() => {
     let ref = collection(projectFirestore, theCollection);
-    // if (query) {
-    //   ref = ref.where(...query);
-    // }
-    // if (orderBy) {
-    //   ref = ref.orderBy(...orderBy);
-    // }
-    // if (theCollection === "projects") {
-    //   ref = query(ref, orderBy("createdAt", "desc"));
-    // }
-    // if (theCollection === "users") {
-    //   ref = query(ref, orderBy("online", "desc"));
-    // }
 
     const unsub = onSnapshot(
       ref,
@@ -46,7 +29,7 @@ export const useCollection = (
 
     // unsubscribe on unamount
     return () => unsub();
-  }, [theCollection, query, orderBy]);
+  }, [theCollection]);
 
   return { documents, error };
 };

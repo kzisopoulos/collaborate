@@ -78,7 +78,6 @@ export const useFirestore = (theCollection: string) => {
 
   // collection reference
   const ref = collection(projectFirestore, theCollection);
-
   // only dispatch if not cancelled
   const dispatchIfNotCancelled = (action: Action) => {
     if (!isCancelled) {
@@ -86,11 +85,12 @@ export const useFirestore = (theCollection: string) => {
     }
   };
   // add a document to collection
-  const addDocument = async (doc: DocumentData) => {
+  const addDocument = async (document: DocumentData) => {
     dispatch({ type: "IS_PENDING" });
     try {
       const createdAt = serverTimestamp();
-      const addedDocument = await addDoc(ref, { ...doc, createdAt });
+      const addedDocument = await addDoc(ref, { ...document, createdAt });
+
       dispatchIfNotCancelled({
         type: "ADDED_DOCUMENT",
         payload: addedDocument,

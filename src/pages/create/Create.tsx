@@ -1,6 +1,6 @@
 import "./Create.css";
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import Select from "react-select";
 import { useCollection } from "../../hooks/useCollection";
@@ -8,7 +8,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useNavigate } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
-import { User, UserInfo, UserMetadata, UserProfile } from "firebase/auth";
+import { User } from "firebase/auth";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -25,8 +25,9 @@ const Create = () => {
   const [details, setDetails] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [category, setCategory] = useState<any>();
-  const [assignedUsers, setAssignedUsers] = useState([]);
+  const [assignedUsers, setAssignedUsers] = useState<any>();
   const [formError, setFormError] = useState<string | null>(null);
+
   let navigate = useNavigate();
   useEffect(() => {
     if (documents) {
@@ -52,11 +53,11 @@ const Create = () => {
       photoURL: user?.photoURL,
       id: user?.uid,
     };
-    const assignedUsersList = assignedUsers.map((user: UserInfo) => {
+    const assignedUsersList = assignedUsers.map((user: any) => {
       return {
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-        id: user.uid,
+        displayName: user.value.displayName,
+        photoURL: user.value.photoURL,
+        id: user.value.id,
       };
     });
     const project = {

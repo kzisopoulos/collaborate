@@ -1,5 +1,3 @@
-import "./ProjectList.css";
-
 import { Link } from "react-router-dom";
 import Avatar from "./Avatar";
 import { CollectionReference, DocumentData } from "firebase/firestore";
@@ -11,22 +9,29 @@ interface IProps {
 
 const ProjectList = ({ projects }: IProps) => {
   return (
-    <div className="project-list">
+    <div className="project-list grid mt-10 md:grid-cols-2 xl:grid-cols-3 gap-5">
       {projects.length === 0 && <p>No projects yet!</p>}
 
       {projects.map((project: DocumentData) => {
         return (
-          <Link to={`/projects/${project.id}`} key={project.id}>
+          <Link
+            className="bg-white p-4 rounded-md shadow-sm flex flex-col justify-between gap-3"
+            to={`/projects/${project.id}`}
+            key={project.id}>
             <h4>{project.name}</h4>
-            <p>Due by {project.dueDate.toDate().toDateString()}</p>
-            <div className="assign-to">
-              <ul>
-                {project.assignedUsersList.map((user: User) => (
-                  <li key={user.photoURL}>
-                    <Avatar src={user.photoURL} />
-                  </li>
-                ))}
-              </ul>
+            <div>
+              <p className="text-xs font-light">
+                Due by {project.dueDate.toDate().toDateString()}
+              </p>
+              <div className="assign-to ">
+                <ul className="mt-3 flex ">
+                  {project.assignedUsersList.map((user: User) => (
+                    <li key={user.photoURL}>
+                      <Avatar src={user.photoURL} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </Link>
         );

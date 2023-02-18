@@ -1,43 +1,23 @@
-import "./Navbar.css";
 import { Link } from "react-router-dom";
-import { useLogout } from "../hooks/useLogout";
 import { useAuthContext } from "../hooks/useAuthContext";
+import darkLogo from "../assets/collaborate-dark.png";
 
 const Navbar = () => {
-  const { logout, isPending } = useLogout();
   const { user } = useAuthContext();
   return (
-    <div className="navbar">
-      <ul>
-        <li className="logo">
-          <h4>Collaborate App</h4>
-        </li>
-
-        {!user && (
-          <>
-            <li>
-              {" "}
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-          </>
-        )}
-        <li>
-          {!isPending && user && (
-            <button onClick={logout} className="btn">
-              Logout
-            </button>
-          )}
-          {isPending && user && (
-            <button className="btn" disabled>
-              Logging out
-            </button>
-          )}
-        </li>
-      </ul>
-    </div>
+    <nav className="flex items-center justify-between pt-8">
+      {!user && (
+        <>
+          <div>
+            <img src={darkLogo} alt="" />
+          </div>
+          <div className="flex gap-4">
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Signup</Link>
+          </div>
+        </>
+      )}
+    </nav>
   );
 };
 

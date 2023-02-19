@@ -17,7 +17,7 @@ const Signup = () => {
   const renderedIcon = isPending ? (
     <MdOutlineRotateRight className="animate-spin" />
   ) : (
-    <MdOutlineLogin className="" />
+    <MdOutlineLogin />
   );
   return (
     <div className=" h-[calc(100vh-142px)] grid place-items-center">
@@ -44,12 +44,14 @@ const Signup = () => {
           />
         </label>
 
-        <button className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white">
+        <button
+          className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white"
+          disabled={isPending}>
           {renderedIcon}
           Login
         </button>
 
-        {error && <div className="error">{error.message}</div>}
+        {error && <div className="error">{error}</div>}
       </form>
     </div>
   );

@@ -13,7 +13,6 @@ export const useLogin = () => {
   const login = async (email: string, password: string) => {
     setError(null);
     setIsPending(true);
-
     try {
       const res = await signInWithEmailAndPassword(
         projectAuth,
@@ -33,17 +32,13 @@ export const useLogin = () => {
       }
     } catch (error: any) {
       if (!isCanceled) {
-        console.log(error.message);
         setError(error.message);
         setIsPending(false);
       }
     }
   };
-
   useEffect(() => {
-    return () => {
-      return setIsCanceled(true);
-    };
+    return () => setIsCanceled((prev) => false);
   }, []);
 
   return { login, error, isPending };

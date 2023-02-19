@@ -40,7 +40,7 @@ export const useLogout = () => {
 
   useEffect(() => {
     return () => {
-      return setIsCanceled(true);
+      return setIsCanceled((prev) => false);
     };
   }, []);
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MdOutlineLogin, MdOutlineRotateRight } from "react-icons/md";
 import useSignup from "../../hooks/useSignup";
 
 const Signup = () => {
@@ -36,49 +37,58 @@ const Signup = () => {
     setThumbnailError(null);
     setThumbnail(selected);
   };
+  const renderedIcon = isPending ? (
+    <MdOutlineRotateRight className="animate-spin" />
+  ) : (
+    <MdOutlineLogin />
+  );
   return (
-    <form onSubmit={handleSubmit} className="auth-form">
-      <h2>Sign up</h2>
-      <label>
-        <span>Email: </span>
-        <input
-          type="email"
-          required
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-      </label>
-      <label>
-        <span>Password: </span>
-        <input
-          type="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-      </label>
-      <label>
-        <span>Display name: </span>
-        <input
-          type="text"
-          required
-          onChange={(e) => setDisplayName(e.target.value)}
-          value={displayName}
-        />
-      </label>
-      <label>
-        <span>Profile thumbnail: </span>
-        <input type="file" required onChange={handleFileChange} />
-        {thumbnailError && <div className="error">{thumbnailError}</div>}
-      </label>
-      {!isPending && <button className="btn">Sign up</button>}
-      {isPending && (
-        <button className="btn" disabled>
-          Loading
+    <div className=" h-[calc(100vh-142px)] grid place-items-center">
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-xl w-full border p-10 border-gray-100 bg-white shadow-lg">
+        <h2>Sign up</h2>
+        <label>
+          <span>Email: </span>
+          <input
+            type="email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
+        </label>
+        <label>
+          <span>Password: </span>
+          <input
+            type="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
+        </label>
+        <label>
+          <span>Display name: </span>
+          <input
+            type="text"
+            required
+            onChange={(e) => setDisplayName(e.target.value)}
+            value={displayName}
+          />
+        </label>
+        <label>
+          <span>Profile thumbnail: </span>
+          <input type="file" required onChange={handleFileChange} />
+          {thumbnailError && <div className="error">{thumbnailError}</div>}
+        </label>
+        <button
+          className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white"
+          disabled={isPending}>
+          {renderedIcon}
+          Sign up
         </button>
-      )}
-      {error && <div className="error">{error.message}</div>}
-    </form>
+        {error && <div className="error">{error.message}</div>}
+      </form>
+    </div>
   );
 };
 

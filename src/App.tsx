@@ -1,5 +1,3 @@
-import "./App.css";
-
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 // Pages & Components
@@ -16,11 +14,11 @@ import OnlineUsers from "./components/OnlineUsers";
 const App = () => {
   const { user, authIsReady } = useAuthContext();
   return (
-    <div className="App">
+    <div className="flex justify-center text-lg bg-gray-100 h-screen">
       {authIsReady && (
         <BrowserRouter>
           {user && <Sidebar />}
-          <div className="container">
+          <div className="flex-grow py-0 px-16">
             <Navbar />
             <Routes>
               <Route

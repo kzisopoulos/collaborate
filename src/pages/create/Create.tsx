@@ -121,7 +121,11 @@ const Create = () => {
           />
         </label>
         <button className="btn">Create</button>
-        {formError && <p className="error">{formError}</p>}
+        {formError && (
+          <p className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
+            {formError}
+          </p>
+        )}
       </form>
     </div>
   );

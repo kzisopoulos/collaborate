@@ -23,7 +23,7 @@ const ProjectComments = ({ project }: IProps) => {
       photoURL: user?.photoURL,
       content: newComment,
       createdAt: Timestamp.now(),
-      id: Math.random(),
+      id: crypto.randomUUID(),
     };
     await updateDocument(project.id, {
       comments: [...project.comments, commentToAdd],

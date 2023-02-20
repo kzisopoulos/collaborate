@@ -86,7 +86,11 @@ const Signup = () => {
           {renderedIcon}
           Sign up
         </button>
-        {error && <div className="error">{error.message}</div>}
+        {error && (
+          <div className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
+            {error.message}
+          </div>
+        )}
       </form>
     </div>
   );

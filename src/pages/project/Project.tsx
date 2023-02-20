@@ -8,7 +8,11 @@ const Project = () => {
   const { document, error } = useDocument("projects", id!);
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return (
+      <div className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
+        {error}
+      </div>
+    );
   }
 
   if (!document) {

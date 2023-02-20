@@ -5,6 +5,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { DocumentData, Timestamp } from "firebase/firestore";
+import { MdAdd } from "react-icons/md";
 
 interface IProps {
   project: DocumentData;
@@ -33,24 +34,26 @@ const ProjectComments = ({ project }: IProps) => {
     }
   };
   return (
-    <div className="project-comments">
-      <h4>Project Comments</h4>
+    <div>
+      <h2 className="text-xl text-gray-700">Project Comments</h2>
 
       <ul>
         {project.comments.length > 0 &&
           project.comments.map((comment: any) => {
             return (
-              <li key={comment.id}>
-                <div className="comment-author">
+              <li
+                className="p-4 rounded-md border border-white mt-5 shadow-md bg-white text-gray-700"
+                key={comment.id}>
+                <div className="flex gap-2 items-center">
                   <Avatar src={comment.photoURL} />
                   <p>{comment.displayName}</p>
                 </div>
-                <div className="comment-date">
+                <div className="text-xs  my-2">
                   {formatDistanceToNow(comment.createdAt.toDate(), {
                     addSuffix: true,
                   })}
                 </div>
-                <div className="comment-content">
+                <div className="text-sm">
                   <p>{comment.content}</p>
                 </div>
               </li>
@@ -58,15 +61,21 @@ const ProjectComments = ({ project }: IProps) => {
           })}
       </ul>
 
-      <form onSubmit={handleSubmit} className="add-comment">
+      <form onSubmit={handleSubmit} className="mt-3">
         <label>
-          <span>Add new comment: </span>
+          <span className="text-xl text-gray-700 block mb-3">
+            Add new comment:
+          </span>
           <textarea
+            className="p-2 text-sm w-full box-border border border-gray-300 rounded-sm min-h-full h-40"
             required
             onChange={(e) => setNewComment(e.target.value)}
             value={newComment}></textarea>
         </label>
-        <button className="btn">Add comment</button>
+        <button className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white text-base">
+          <MdAdd />
+          Add Comment
+        </button>
       </form>
     </div>
   );

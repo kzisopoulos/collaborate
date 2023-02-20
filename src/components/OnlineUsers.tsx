@@ -4,8 +4,8 @@ import Avatar from "./Avatar";
 const OnlineUsers = () => {
   const { error, documents } = useCollection("users");
   return (
-    <div className="w-80 bg-gray-50 text-gray-700 ">
-      <h2 className="text-center mb-10 text-2xl pt-10">All users:</h2>
+    <div className="bg-gray-50 text-gray-700 px-10">
+      <h2 className="text-xl text-gray-700 my-10">All users : </h2>
       {error && (
         <div className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
           {error}

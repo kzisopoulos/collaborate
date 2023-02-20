@@ -1,4 +1,3 @@
-import "./Project.css";
 import { useParams } from "react-router-dom";
 import { useDocument } from "../../hooks/useDoument";
 import ProjectSummary from "./ProjectSummary";
@@ -19,7 +18,7 @@ const Project = () => {
     return <div className="loading">Loading...</div>;
   }
   return (
-    <div className="project-details">
+    <div className="grid grid-cols-3 gap-16 items-start">
       <ProjectSummary project={document} />
       <ProjectComments project={document} />
     </div>

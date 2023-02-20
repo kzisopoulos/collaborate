@@ -1,5 +1,3 @@
-import "./Create.css";
-
 import { useEffect } from "react";
 import { useState } from "react";
 import Select from "react-select";
@@ -9,6 +7,7 @@ import { useFirestore } from "../../hooks/useFirestore";
 import { useNavigate } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
 import { User } from "firebase/auth";
+import { MdAdd } from "react-icons/md";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -76,7 +75,7 @@ const Create = () => {
     }
   };
   return (
-    <div className="create-form">
+    <div className="max-w-xl w-full">
       <h2 className="text-xl text-gray-700">Create a new project</h2>
       <form onSubmit={handleSubmit}>
         <label className="block my-6 mx-auto">
@@ -123,7 +122,10 @@ const Create = () => {
             isMulti
           />
         </label>
-        <button className="btn">Create</button>
+        <button className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white">
+          <MdAdd />
+          Create
+        </button>
         {formError && (
           <p className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
             {formError}

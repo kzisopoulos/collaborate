@@ -1,4 +1,3 @@
-import "./Dashboard.css";
 import { useEffect, useState } from "react";
 import { useCollection } from "../../hooks/useCollection";
 import ProjectList from "../../components/ProjectList";

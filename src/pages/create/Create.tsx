@@ -77,43 +77,46 @@ const Create = () => {
   };
   return (
     <div className="create-form">
-      <h2 className="page-title">Create a new project</h2>
+      <h2 className="text-xl text-gray-700">Create a new project</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          <span>Project name: </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Project name: </span>
           <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
             type="text"
             required
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
         </label>
-        <label>
-          <span>Project details: </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Project details: </span>
           <textarea
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm min-h-full h-40"
             required
             onChange={(e) => setDetails(e.target.value)}
             value={details}
           />
         </label>
-        <label>
-          <span>Set due date </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Set due date </span>
           <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
             type="date"
             required
             onChange={(e) => setDueDate(e.target.value)}
             value={dueDate}
           />
         </label>
-        <label>
-          <span>Project category:</span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Project category:</span>
           <Select
             options={categories}
             onChange={(option) => setCategory(option)}
           />
         </label>
-        <label>
-          <span>Assign to:</span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Assign to:</span>
           <Select
             options={users}
             onChange={(option) => setAssignedUsers(option)}

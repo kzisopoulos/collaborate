@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2 className="page-title">Dashboard</h2>
+      <h2 className="text-xl text-gray-700">Dashboard</h2>
       {error && (
         <p className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">{error}</p>
       )}

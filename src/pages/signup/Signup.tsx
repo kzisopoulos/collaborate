@@ -48,36 +48,44 @@ const Signup = () => {
         onSubmit={handleSubmit}
         className="max-w-xl w-full border p-10 border-gray-100 bg-white shadow-lg">
         <h2>Sign up</h2>
-        <label>
-          <span>Email: </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Email: </span>
           <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
             type="email"
             required
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
         </label>
-        <label>
-          <span>Password: </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Password: </span>
           <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
             type="password"
             required
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
         </label>
-        <label>
-          <span>Display name: </span>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Display name: </span>
           <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
             type="text"
             required
             onChange={(e) => setDisplayName(e.target.value)}
             value={displayName}
           />
         </label>
-        <label>
-          <span>Profile thumbnail: </span>
-          <input type="file" required onChange={handleFileChange} />
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Profile thumbnail: </span>
+          <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
+            type="file"
+            required
+            onChange={handleFileChange}
+          />
           {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
         <button

@@ -1,10 +1,9 @@
-import React from "react";
 import Avatar from "../../components/Avatar";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useFirestore } from "../../hooks/useFirestore";
 import { useNavigate } from "react-router-dom";
 import { DocumentData } from "firebase/firestore";
-import { MdCheck, MdOutlineDeleteOutline } from "react-icons/md";
+import { MdDoneAll, MdOutlineDeleteOutline } from "react-icons/md";
 
 interface IProps {
   project: DocumentData;
@@ -58,7 +57,7 @@ const ProjectSummary = ({ project }: IProps) => {
           <button
             onClick={handleUpdate}
             className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white">
-            <MdCheck />
+            <MdDoneAll />
             Mark as complete
           </button>
         </div>

@@ -92,7 +92,11 @@ const Navbar = () => {
       {!user && (
         <div className="flex items-center justify-between">
           <div>
-            <img src={darkLogo} alt="" />
+            <img
+              src={darkLogo}
+              alt="Collaborate app dark logo"
+              className="w-32"
+            />
           </div>
           <div className="flex gap-4">
             <Link to="/login">Login</Link>

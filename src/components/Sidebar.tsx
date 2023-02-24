@@ -16,9 +16,13 @@ const Sidebar = () => {
   return (
     <div className="min-w-fit bg-gray-700 min-h-screen text-gray-50">
       <div className="mt-9 px-2 w-52 mx-auto">
-        <img src={whiteLogo} alt="" className="mx-auto" />
+        <img
+          src={whiteLogo}
+          alt="Collaborate app white logo"
+          className="mx-auto w-32"
+        />
       </div>
-      <div className="mt-6">
+      <div className="mt-8">
         <nav>
           <ul className="flex flex-col gap-2">
             {links.map((link) => {

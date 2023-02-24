@@ -4,6 +4,7 @@ import { useFirestore } from "../../hooks/useFirestore";
 import { useNavigate } from "react-router-dom";
 import { DocumentData } from "firebase/firestore";
 import { MdDoneAll, MdOutlineDeleteOutline } from "react-icons/md";
+import { toast } from "react-toastify";
 
 interface IProps {
   project: DocumentData;
@@ -14,11 +15,13 @@ const ProjectSummary = ({ project }: IProps) => {
   const { user } = useAuthContext();
   let displayBtn = user?.uid === project.createdBy.id ? true : false;
   let navigate = useNavigate();
-  const handleClick = (e: any) => {
+  const handleDelete = (e: any) => {
+    toast.error("Project deleted.");
     deleteDocument(project.id);
     navigate("/");
   };
   const handleUpdate = (e: any) => {
+    toast.warn("Project archived.");
     updateDocument(project.id, {
       category: "completed",
     });
@@ -49,7 +52,7 @@ const ProjectSummary = ({ project }: IProps) => {
       {displayBtn && (
         <div className="flex gap-2 mt-5">
           <button
-            onClick={handleClick}
+            onClick={handleDelete}
             className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white">
             <MdOutlineDeleteOutline />
             Delete

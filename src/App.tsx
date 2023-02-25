@@ -5,12 +5,12 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Create from "./pages/create/Create";
 import Login from "./pages/login/Login";
 import Project from "./pages/project/Project";
-// import Signup from "./pages/signup/Signup";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./hooks/useAuthContext";
 import OnlineUsers from "./components/OnlineUsers";
-import NewSignup from "./pages/signup/Signup";
+import UserProfile from "./pages/profile/UserProfile";
+import Signup from "./pages/signup/Signup";
 
 const App = () => {
   const { user, authIsReady } = useAuthContext();
@@ -42,6 +42,15 @@ const App = () => {
                 }
               />
               <Route
+                path="/profile"
+                element={
+                  <>
+                    {!user && <Navigate to="/login" />}
+                    {user && <UserProfile />}
+                  </>
+                }
+              />
+              <Route
                 path="/projects/:id"
                 element={
                   <>
@@ -63,7 +72,7 @@ const App = () => {
                 path="/signup"
                 element={
                   <>
-                    {!user && <NewSignup />}
+                    {!user && <Signup />}
                     {user && <Navigate to="/" />}
                   </>
                 }

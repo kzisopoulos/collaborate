@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { projectAuth, projectFirestore } from "../firebase/config";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "./useAuthContext";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -11,7 +11,7 @@ const oldUseSignup = () => {
   const { dispatch } = useAuthContext();
 
   // function to sign the user up
-  const signup = async (
+  const updateUser = async (
     email: string,
     password: string,
     displayName: string,
@@ -69,7 +69,7 @@ const oldUseSignup = () => {
       return setIsCanceled((prev) => false);
     };
   }, []);
-  return { error, isPending, signup };
+  return { error, isPending, updateUser };
 };
 
 export default oldUseSignup;

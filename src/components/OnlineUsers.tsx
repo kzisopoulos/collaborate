@@ -5,7 +5,7 @@ const OnlineUsers = () => {
   const { error, documents } = useCollection("users");
   return (
     <div className="bg-gray-50 text-gray-700 px-3">
-      <h2 className=" text-gray-700 mt-10 mb-8 ">Team Members : </h2>
+      <h2 className=" text-gray-700 mt-10 mb-8 pl-2">Team Members : </h2>
       {error && (
         <div className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
           {error}

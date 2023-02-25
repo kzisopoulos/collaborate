@@ -6,7 +6,6 @@ import {
   MdKeyboardArrowDown,
   MdKeyboardArrowUp,
   MdOutlineLogout,
-  MdOutlineSettings,
   MdPersonOutline,
 } from "react-icons/md";
 import { useState, useEffect } from "react";
@@ -68,15 +67,9 @@ const Navbar = () => {
               <div className="dropdown w-64 p-2 border bg-white backdrop-blur-xl shadow-lg absolute top-9  right-1 rounded-md">
                 <button
                   className="dropdown flex gap-2 text-center items-center p-2 hover:bg-gray-100 w-full"
-                  onClick={() => navigateTo("/")}>
+                  onClick={() => navigateTo("/profile")}>
                   <MdPersonOutline />
                   Profile
-                </button>
-                <button
-                  className="dropdown flex gap-2 text-center items-center p-2 hover:bg-gray-100 w-full"
-                  onClick={() => navigateTo("/")}>
-                  <MdOutlineSettings />
-                  Settings
                 </button>
                 <button
                   onClick={logout}

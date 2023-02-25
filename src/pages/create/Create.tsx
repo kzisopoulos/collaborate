@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 
 const categories = [
   { value: "development", label: "Development" },
-  { value: "infrastructure", label: "Infastructure" },
+  { value: "infrastructure", label: "Infrastructure" },
   { value: "network", label: "Network" },
 ];
 

@@ -26,8 +26,8 @@ const ProjectList = ({ projects }: IProps) => {
               <div className="assign-to ">
                 <ul className="mt-3 flex ">
                   {project.assignedUsersList.map((user: User) => (
-                    <li key={user.photoURL}>
-                      <Avatar src={user.photoURL} />
+                    <li key={user.displayName}>
+                      <Avatar src={user.displayName!} />
                     </li>
                   ))}
                 </ul>

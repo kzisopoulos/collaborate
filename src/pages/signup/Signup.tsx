@@ -3,40 +3,20 @@ import { MdOutlineLogin, MdOutlineRotateRight } from "react-icons/md";
 import useSignup from "../../hooks/useSignup";
 
 const Signup = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [thumbnail, setThumbnail] = useState<File | null>(null);
-  const [thumbnailError, setThumbnailError] = useState<string | null>(null);
+  const [passwordCheck, setPasswordCheck] = useState("");
+
   const { signup, isPending, error } = useSignup();
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    signup(email, password, displayName, thumbnail!);
+    signup(firstName, lastName, email, password, passwordCheck);
     setEmail("");
     setPassword("");
-    setDisplayName("");
-    setThumbnail(null);
-    setThumbnailError(null);
   };
-  const handleFileChange = (e: any) => {
-    setThumbnail(null);
-    let selected = e.target.files[0];
-    if (!selected) {
-      setThumbnailError("Please select a file.");
-      return;
-    }
-    if (!selected.type.includes("image")) {
-      setThumbnailError("Selected file must be an image.");
-      return;
-    }
-    if (selected.size > 100000) {
-      setThumbnailError("Image filesize must be less than 100kb");
-      return;
-    }
 
-    setThumbnailError(null);
-    setThumbnail(selected);
-  };
   const renderedIcon = isPending ? (
     <MdOutlineRotateRight className="animate-spin" />
   ) : (
@@ -47,7 +27,27 @@ const Signup = () => {
       <form
         onSubmit={handleSubmit}
         className="max-w-xl w-full border p-10 border-gray-100 bg-white shadow-lg">
-        <h2>Sign up</h2>
+        <h2>NEW! Sign up</h2>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">First name: </span>
+          <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
+            type="text"
+            required
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+          />
+        </label>
+        <label className="block my-6 mx-auto">
+          <span className="block mb-2">Last name: </span>
+          <input
+            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
+            type="text"
+            required
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+          />
+        </label>
         <label className="block my-6 mx-auto">
           <span className="block mb-2">Email: </span>
           <input
@@ -69,24 +69,14 @@ const Signup = () => {
           />
         </label>
         <label className="block my-6 mx-auto">
-          <span className="block mb-2">Display name: </span>
+          <span className="block mb-2">Retype password: </span>
           <input
             className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
-            type="text"
+            type="password"
             required
-            onChange={(e) => setDisplayName(e.target.value)}
-            value={displayName}
+            onChange={(e) => setPasswordCheck(e.target.value)}
+            value={passwordCheck}
           />
-        </label>
-        <label className="block my-6 mx-auto">
-          <span className="block mb-2">Profile thumbnail: </span>
-          <input
-            className="p-2 text-base text-gray-600 w-full box-border border border-gray-300 rounded-sm"
-            type="file"
-            required
-            onChange={handleFileChange}
-          />
-          {thumbnailError && <div className="error">{thumbnailError}</div>}
         </label>
         <button
           className="flex items-center gap-2 border px-3 py-2 rounded-md bg-gray-700 text-white"
@@ -96,7 +86,7 @@ const Signup = () => {
         </button>
         {error && (
           <div className="bg-red-100 text-red-600 p-2 rounded-md mt-4 ">
-            {error.message}
+            {error}
           </div>
         )}
       </form>

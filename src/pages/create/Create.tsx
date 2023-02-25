@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { Timestamp } from "firebase/firestore";
 import { User } from "firebase/auth";
 import { MdAdd } from "react-icons/md";
+import { toast } from "react-toastify";
 
 const categories = [
   { value: "development", label: "Development" },
@@ -49,13 +50,11 @@ const Create = () => {
     }
     const createdBy = {
       displayName: user?.displayName,
-      photoURL: user?.photoURL,
       id: user?.uid,
     };
     const assignedUsersList = assignedUsers.map((user: any) => {
       return {
         displayName: user.value.displayName,
-        photoURL: user.value.photoURL,
         id: user.value.id,
       };
     });
@@ -70,6 +69,7 @@ const Create = () => {
     };
 
     addDocument(project);
+    toast.success("Project added successfully.");
     if (!response.error) {
       navigate("/");
     }

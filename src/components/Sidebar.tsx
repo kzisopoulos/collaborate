@@ -34,7 +34,7 @@ const Sidebar = () => {
                       link.to === pathname && "bg-gray-500"
                     }`}>
                     {link.icon}
-                    <span>{link.label}</span>
+                    {link.label}
                   </NavLink>
                 </li>
               );
@@ -43,7 +43,7 @@ const Sidebar = () => {
               onClick={logout}
               className="flex gap-2 text-center text-xl py-3 items-center px-8 text-red-400">
               <MdOutlineLogout />
-              <span>Logout</span>
+              Logout
             </button>
           </ul>
         </nav>

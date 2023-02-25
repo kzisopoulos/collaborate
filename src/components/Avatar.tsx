@@ -1,16 +1,14 @@
 interface IProps {
-  src: string | null;
+  src: string;
 }
 
 const Avatar = ({ src }: IProps) => {
+  const [firstName, lastName] = src.split(" ");
+
   return (
-    <>
-      {src && (
-        <div className="inline-block w-10 h-10 rounded-full overflow-hidden border-2">
-          <img src={src} alt="user avatar" className="h-full w-full" />
-        </div>
-      )}
-    </>
+    <div className=" w-10 h-10 rounded-full overflow-hidden border-2 grid place-items-center">
+      {`${firstName[0]}${lastName[0]}`}
+    </div>
   );
 };
 

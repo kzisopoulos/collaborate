@@ -5,14 +5,16 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Create from "./pages/create/Create";
 import Login from "./pages/login/Login";
 import Project from "./pages/project/Project";
-import Signup from "./pages/signup/Signup";
+// import Signup from "./pages/signup/Signup";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import { useAuthContext } from "./hooks/useAuthContext";
 import OnlineUsers from "./components/OnlineUsers";
+import NewSignup from "./pages/signup/Signup";
 
 const App = () => {
   const { user, authIsReady } = useAuthContext();
+
   return (
     <div className="flex justify-center text-lg bg-gray-100 h-screen">
       {authIsReady && (
@@ -61,7 +63,7 @@ const App = () => {
                 path="/signup"
                 element={
                   <>
-                    {!user && <Signup />}
+                    {!user && <NewSignup />}
                     {user && <Navigate to="/" />}
                   </>
                 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import Avatar from "../../components/Avatar";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -22,7 +21,6 @@ const ProjectComments = ({ project }: IProps) => {
 
     const commentToAdd = {
       displayName: user?.displayName,
-      photoURL: user?.photoURL,
       content: newComment,
       createdAt: Timestamp.now(),
       id: crypto.randomUUID(),
@@ -52,7 +50,7 @@ const ProjectComments = ({ project }: IProps) => {
                 className="p-4 block break-all rounded-md border border-white mb-4 shadow-md bg-white text-gray-700"
                 key={comment.id}>
                 <div className="flex gap-2 items-center">
-                  <Avatar src={comment.photoURL} />
+                  <Avatar src={comment.displayName} />
                   <p>{comment.displayName}</p>
                 </div>
                 <div className="text-xs  my-2">

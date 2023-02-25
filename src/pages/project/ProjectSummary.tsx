@@ -43,7 +43,7 @@ const ProjectSummary = ({ project }: IProps) => {
           {project.assignedUsersList.map((user: any) => {
             return (
               <div key={user.id}>
-                <Avatar src={user.photoURL} />
+                <Avatar src={user.displayName} />
               </div>
             );
           })}

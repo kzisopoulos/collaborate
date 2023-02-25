@@ -59,7 +59,7 @@ const Navbar = () => {
     <nav className="py-8">
       {user && (
         <div className="flex items-center gap-2 justify-end">
-          <Avatar src={user?.photoURL!} />
+          <Avatar src={user?.displayName!} />
           <p className="text-base capitalize">{user?.displayName}</p>
           <div className="relative">
             {renderDropdownIcon}
@@ -82,7 +82,7 @@ const Navbar = () => {
                   onClick={logout}
                   className="dropdown flex gap-2 text-center items-center p-2 text-red-500 hover:bg-gray-100 w-full">
                   <MdOutlineLogout />
-                  <span>Logout</span>
+                  Logout
                 </button>
               </div>
             )}

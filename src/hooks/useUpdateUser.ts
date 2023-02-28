@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { projectAuth, projectFirestore } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  updateEmail,
+  updateProfile,
+  User,
+} from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-const oldUseSignup = () => {
+const useUpdateUser = () => {
   const [isCanceled, setIsCanceled] = useState(false);
   const [error, setError] = useState<any>(null);
   const [isPending, setIsPending] = useState(false);
@@ -12,46 +17,42 @@ const oldUseSignup = () => {
 
   // function to sign the user up
   const updateUser = async (
-    email: string,
-    password: string,
-    displayName: string,
-    thumbnail: File
+    user: User,
+    firstName: string,
+    lastName: string,
+    email: string
+    // thumbnail: File
   ) => {
     setError(null);
     setIsPending(true);
 
     try {
-      // try to sign up the user
-      const res = await createUserWithEmailAndPassword(
-        projectAuth,
-        email,
-        password
-      );
-
-      if (!res) {
-        throw new Error("Could not complete signup");
-      }
-
       // upload user thumbnail
-      const uploadPath = `thumbnails/${res.user.uid}/${thumbnail.name}`;
-      const storage = getStorage();
-      const imgRef = ref(storage, uploadPath);
-      await uploadBytes(imgRef, thumbnail);
+      // const uploadPath = `thumbnails/${user.uid}/${thumbnail.name}`;
+      // const storage = getStorage();
+      // const imgRef = ref(storage, uploadPath);
+      // await uploadBytes(imgRef, thumbnail);
 
-      const imgURL = await getDownloadURL(imgRef);
-
-      await updateProfile(res.user, {
-        displayName: displayName,
-        photoURL: imgURL,
+      // const imgURL = await getDownloadURL(imgRef);
+      console.log("In here");
+      console.log(user);
+      await updateProfile(user, {
+        displayName: `${firstName} ${lastName}`,
+        // photoURL: imgURL,
       });
 
-      await setDoc(doc(projectFirestore, "users", res.user.uid), {
+      await updateEmail(user, email);
+
+      await setDoc(doc(projectFirestore, "users", user.uid), {
+        displayName: `${firstName} ${lastName}`,
+        firstName,
+        lastName,
+        email,
         online: true,
-        displayName,
-        photoURL: imgURL,
+        // photoURL: imgURL,
       });
       // dispatch login action:
-      dispatch({ type: "LOGIN", payload: res.user });
+      dispatch({ type: "UPDATE", payload: user });
       if (!isCanceled) {
         setIsPending(false);
         setError(null);
@@ -72,4 +73,4 @@ const oldUseSignup = () => {
   return { error, isPending, updateUser };
 };
 
-export default oldUseSignup;
+export default useUpdateUser;

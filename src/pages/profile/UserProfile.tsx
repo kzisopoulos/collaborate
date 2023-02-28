@@ -1,22 +1,21 @@
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { MdSave } from "react-icons/md";
-import { getAuth } from "firebase/auth";
+import useUpdateUser from "../../hooks/useUpdateUser";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const { user } = useAuthContext();
   const { documents, error } = useCollection("users");
   const userUID = user?.uid;
   const currentUser = documents?.find((user: any) => user.id === userUID);
-  console.log(currentUser);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-
-  const auth = getAuth();
-  console.log(auth.currentUser);
-  console.log("Curernt", user);
+  const { updateUser } = useUpdateUser();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (currentUser) {
@@ -26,7 +25,12 @@ const UserProfile = () => {
     }
   }, [currentUser]);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    await updateUser(user!, firstName, lastName, email);
+    navigate("/");
+    toast.success("User updated successfully.");
+  };
 
   return (
     <div>

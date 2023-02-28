@@ -13,7 +13,7 @@ interface AuthState {
 }
 
 export interface AuthActions {
-  type: "LOGIN" | "LOGOUT" | "AUTH_IS_READY";
+  type: "LOGIN" | "UPDATE" | "LOGOUT" | "AUTH_IS_READY";
   payload: any;
 }
 
@@ -27,6 +27,8 @@ export const AuthContext = createContext<AuthState>(initialState);
 export const authReducer = (state: AuthState, action: AuthActions) => {
   switch (action.type) {
     case "LOGIN":
+      return { ...state, user: action.payload };
+    case "UPDATE":
       return { ...state, user: action.payload };
     case "LOGOUT":
       return { ...state, user: null };

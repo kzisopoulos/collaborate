@@ -5,14 +5,13 @@ import { getStorage } from "firebase/storage";
 import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC3KbZ-05h6DRllZbfXvjIbiaRHO9_JndM",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "collab-f3cc5.firebaseapp.com",
   projectId: "collab-f3cc5",
   storageBucket: "collab-f3cc5.appspot.com",
   messagingSenderId: "534517306982",
   appId: "1:534517306982:web:8be85390537c4fc3f07fa7",
-  databaseURL:
-    "https://collab-f3cc5-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: process.env.REACT_APP_REALTIME_DATABASE_URL,
 };
 
 // step 1: initialize firebase

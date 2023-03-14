@@ -27,7 +27,7 @@ const Signup = () => {
       <form
         onSubmit={handleSubmit}
         className="max-w-xl w-full border p-10 border-gray-100 bg-white shadow-lg">
-        <h2>NEW! Sign up</h2>
+        <h2>Sign up</h2>
         <label className="block my-6 mx-auto">
           <span className="block mb-2">First name: </span>
           <input

@@ -34,8 +34,6 @@ const useUpdateUser = () => {
       // await uploadBytes(imgRef, thumbnail);
 
       // const imgURL = await getDownloadURL(imgRef);
-      console.log("In here");
-      console.log(user);
       await updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
         // photoURL: imgURL,

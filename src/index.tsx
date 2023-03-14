@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import { AuthContextProvider } from "./context/AuthContext";
+import { OnlineStatusProvider } from "./context/OnlineStatusContext";
 import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +14,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <OnlineStatusProvider>
+        <App />
+      </OnlineStatusProvider>
     </AuthContextProvider>
     <ToastContainer
       position="top-right"

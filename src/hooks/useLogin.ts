@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { projectAuth, projectFirestore } from "../firebase/config";
 import { useAuthContext } from "./useAuthContext";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
 
 export const useLogin = () => {
@@ -14,16 +18,17 @@ export const useLogin = () => {
     setError(null);
     setIsPending(true);
     try {
-      const res = await signInWithEmailAndPassword(
-        projectAuth,
-        email,
-        password
-      );
+      const res = await setPersistence(projectAuth, browserSessionPersistence)
+        .then(() => {
+          return signInWithEmailAndPassword(projectAuth, email, password);
+        })
+        .catch((error) => {
+          throw Error(error.message);
+        });
       // update the online status
-
       const docRef = doc(projectFirestore, "users", res.user.uid);
       await updateDoc(docRef, { online: true });
-      // dispatch the login action
+      // // dispatch the login action
       dispatch({ type: "LOGIN", payload: res.user });
 
       if (!isCanceled) {

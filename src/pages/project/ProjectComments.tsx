@@ -41,7 +41,7 @@ const ProjectComments = ({ project }: IProps) => {
 
       <ul
         className={`h-[500px] ${
-          project.comments.length > 4 ? "overflow-y-scroll" : ""
+          project.comments.length > 3 ? "overflow-y-scroll" : ""
         }`}>
         {project.comments.length > 0 &&
           project.comments.map((comment: any) => {
